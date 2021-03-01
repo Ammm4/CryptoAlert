@@ -1,2 +1,2 @@
 # CryptoAlert
-A website to create notifications when price hits certain target or when large transactions are made.
+A website that gives desktop notifications for cryptocurrency price alert.
