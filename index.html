@@ -27,16 +27,136 @@
 
 <body>
 
+  <div class="app-wrap">
+    <header>
+         <div class="brand"> 
+               <div class="back-button">
+                     <button class="fas fa-arrow-left return-button"></button>
+               </div>
+               <div class="left-header">
+                     <img src="images/coin1.png"  alt="Logo" class="logo"><span class="brand-name">CryptoAlert</span><sup>GB</sup>
+               </div>                   
+               <div class="center-header"> 
+                     <input type="text" class="searchAsset" autocapitalize="none" autocomplete="none" placeholder="Search Assets">
+                     <button class="clearInputValue"><i class="fas fa-times"></i></button>
+                     <div class="searchResults">
+                          <ul class="coinList"></ul>                                 
+                     </div>
+               </div>                  
+               <div class="right-header">
+                   <div class="button-group">
+                          <div class="search"><button class="search-btn"><i class="fas fa-search"></i></button></div>
+                          <div class="settings" title="settings">
+                                <button class="settings-btn"><i class="fas fa-cog"></i></button>
+                                <div id="dropdown">
+                                      <button class="notificationEnabler enable-btn"></button>
+                                      <span>Get Notifications</span>      
+                                </div>    
+                          </div>
+                          <div class="notifications" title="notifications"><button class="notification-btn"><i class="fas fa-bell"></i><span class="totalNotifications"></span></button></div>
+                   </div>        
+                   <div class="profile">
+                            <img  class="profile-pic"src="images/profile.jpeg" alt="profile-picture">
+                   </div>        
+              </div>
+        </div>             
+  </header>
+  <main>
+      <section>
+
+       <!--=============== Watchlist Start =============== -->
+            <div class="watchlist"></div> 
+       <!-- =============== Watchlist End =============== -->
 
 
+       <!-- =============== Watchlist Empty Start =============== -->
+            <div class="empty-table">
+                    <div class="emptyWatchlist">
+                          <div class="image-container">
+                          <img src="images/owl.png" alt="Empty Box" />
+                          </div>
+                          <p class="first-line">No assets yet</p>
+                          <p>Add an asset and it will show up here...</p>
+                    </div>
+            </div>
+        <!-- =============== Watchlist Empty End =============== -->
+       
+       
+       <!-- =============== Table Start =============== -->
+            <table class="assets-table">
+
+      <!-- =============== Table Headings Row Start =============== -->
+                <thead>
+                    <tr>
+                          <th>Coin</th>
+                          <th class="hideColumn"></th>
+                          <th class="hideColumn">Price</th>
+                          <th class="hideColumn">Market Cap</th>
+                          <th class="alert-status">Alert Status</th>
+                          <th>Action</th>
+                    </tr>                        
+                </thead>               
+      <!-- =============== Table Headings Row End =============== -->
 
 
+      <!-- =============== Table Assets Row Start =============== -->
+                <tbody id="assets"></tbody>
+      <!-- =============== Table Assets Row Finish =============== -->
+
+            </table>
+        <!-- =============== Table End =============== -->
+     </section>
+
+     <!-- =============== Top 5 Assets Start ================= -->
+     <div class="major-assets"></div>         
+     <div class="slider owl-carousel owl-theme">
+                 <div class="card"></div>                    
+                 <div class="card"></div>
+                 <div class="card"></div>
+                 <div class="card"></div>
+                 <div class="card"></div>
+     </div>
+     <!-- =============== Top 5 Assets End ================= -->
+
+     <!-- =============== Global Data Start ================= -->
+     <div class="global-data"></div>
+     <div class="global-container">
+                 <div class="marketlogo-container">
+                       <img src="images/marketCap.png" class="global-icon">
+                 </div>
+                 <div class="details"></div>
+     </div>    
+    <!-- =============== Global Data End ================= -->
+
+      <!-- =============== Add Asset Modal Box Start =============== -->
+     <div class="modalBox"></div>
+      <!-- =============== Add Asset Modal Box End =============== -->
 
 
+      <!-- =========== Price Alert Modal Box Start ============ -->
+      <div class="priceAlertModal">
+            <span class="closeBox">&times;</span>
+            <span class="emptyBox">Clear All</span>
+            <div class="no-notifications">
+                    <div class="bell-container">
+                                <img src="images/bell.png">
+                                <p>No notifications yet</p>
+                    </div>
+            </div>                 
+            <div class="alerts">
+            </div>
+      </div>
+      <!-- =============== Price Alert Modal Box End =============== -->
+          
+  </main>
 
+  <footer>            
+        <div class="copyright">
+              &#169 Copyright CryptoAlerts 2021
+        </div>
+  </footer>
 
-
-
+</div>
 
 
 <!-- ============= Main JS start ================= -->
