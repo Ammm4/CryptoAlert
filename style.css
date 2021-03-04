@@ -310,16 +310,13 @@ button.addAssetToWatchlist:hover {
 
 /*================================ Main Start ====================================*/
 
-main {
-  margin-top: 1.5rem;
-}
 
 .watchlist, .major-assets, .global-data{
   position: relative;
   width: 100%;
   max-width: 90%;
   height: auto;
-  margin: auto;
+  margin: 1.5rem auto 0 auto;
   border: 2px solid rgb(236, 239, 241);
 }
 
@@ -835,7 +832,7 @@ button.remove-alert {
 }
 /* =========== Price Alert Modal End =========== */
 
-/*================================ Main Start ====================================*/
+/*================================ Main End ====================================*/
 
 
 /* =============================== Footer Start =================================*/
@@ -852,41 +849,65 @@ button.remove-alert {
 
 /* =============================== Footer End ===================================*/
 
-
-
-/* ============================== Media Queries Start ============================*/
+/* =============================== Media Queries Start ===================================*/
 
 @media only screen and (max-width: 768px) {
     
-    div.center-header {
-      display: none; 
-      flex-basis: 94%;
-    }
-    
-    div.right-header .search {
-      display: block;
-    }
-
-  /* ============== Owl Carousel Start ============*/ 
-
-    .card .content .asset-symbol {
-      font-size: 14px;
-    }
-
-    .card .content .asset-price {
-      margin-top: 1rem;
-      font-size: 21px;
-      font-weight: 600;
-    }
- 
-  /* ============== Owl Carousel End ============*/
-
-  /* ============== Table Start ============*/
-   .coin .assetName {
-    display: none
+  div.center-header {
+    display: none; 
+    flex-basis: 94%;
   }
-   /* ============== Table Start ============*/
+  
+  div.right-header .search {
+    display: block;
+  }
+
 }
 
+@media only screen and (max-width: 700px) {
+  .hideColumn {
+    display: none;
+  }
 
+  .major-assets::before , .watchlist::before, .global-data::before{
+    text-shadow: 1px 0 0 rgba(a, a, a, 0.1); 
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    font-size: 1rem;
+    font-weight: 600;
+    transform: translate(-50%,-5%);
+    background-color: #edf1fd;
+  }
+  
+  .coin div {
+    font-size: .9rem;
+  }
 
+  .coin .assetName {
+    display: none
+  }
+  .coin .icon {
+    width: 2rem;
+    height: 2rem
+  }
+  .alertStatus {
+    font-size: 0.9rem;
+  }
+
+  .state {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+
+  .market-cap {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .market-cap span {
+    padding: 5px;
+  }
+}
