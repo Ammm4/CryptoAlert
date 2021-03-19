@@ -446,12 +446,15 @@
                                         </div>
                                        `;
                             let icon = 'images/coin1.png';
-                            let message = `${assetsWatchList[num].coinName} (${assetsWatchList[num].coinSymbol.toUpperCase()}) ${words} £${assetsWatchList[num].coinAlert.target}`;
-                            let notification = new Notification('Price-alert',{icon: icon, body:message });
-                            notification.onclick= function(event){
+                            if (('Notification' in window)) {
+                              let message = `${assetsWatchList[num].coinName} (${assetsWatchList[num].coinSymbol.toUpperCase()}) ${words} £${assetsWatchList[num].coinAlert.target}`;
+                              let notification = new Notification('Price-alert',{icon: icon, body:message });
+                              notification.onclick= function(event){
                                   event.preventDefault();
                                   window.open('http://127.0.0.1:5500/index.html', '_blank')
                             }
+                            }
+                            
                             assetsWatchList[num].coinAlert.status = 'Triggered';
                             let assetRow = document.getElementsByTagName('TR')[num+1];                         
                             let priceTrigger = `<div class='status'>
@@ -498,10 +501,12 @@
          addEvent();             
          setInterval(getCurrentPrice,1500); 
          getCurrentGlobalData();
-         if(Notification.permission === "granted") {
-              notificationBtn.classList.toggle('enable-btn');           
-              notificationBtn.classList.toggle('onState');
-            }       
+         if (('Notification' in window)) {
+            if(Notification.permission === "granted") {
+                  notificationBtn.classList.toggle('enable-btn');           
+                  notificationBtn.classList.toggle('onState');
+                }
+          }               
            
   }
   displayContent();
