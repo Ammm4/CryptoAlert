@@ -100,24 +100,9 @@
         document.querySelector('.notification-btn .totalNotifications').style.display="none";
   }
   
-  function showNotificationEnabler(){
-        if('Notification' in window) {
+  function showNotificationEnabler(){      
             let text = (dropDown.style.display === 'flex')? '':'flex';
-            dropDown.style.display = text;
-        } else {
-                  let text = `<span class="closeBox">&times;</span>
-                  <div class='formBox'>
-                        <div class='image-container'>
-                            <img src='images/sorry.png'>
-                        </div>
-                        <h2 style="margin-top:.2rem;letter-spacing:0.5px;font-weight:bold">Sorry!!</h2>                                   
-                        <p style="font-size:0.8rem">Desktop Notifications not supported in your device</p>
-                  </div>`             
-                  document.querySelector('.modalBox').innerHTML = text;
-                  document.querySelector('.modalBox').style.display = "block";
-                  document.querySelector('.modalBox .closeBox').addEventListener('click' , function(){closeBox('.modalBox')});
-        }
-        
+            dropDown.style.display = text;    
   }
   
   function showMatchingCoinList() {
@@ -596,7 +581,17 @@
                   }               
         }
         if (!('Notification' in window)) {
-              console.log("This browser does not support notifications.");
+            let text = `<span class="closeBox">&times;</span>
+            <div class='formBox'>
+                  <div class='image-container'>
+                      <img src='images/sorry.png'>
+                  </div>
+                  <h2 style="margin-top:.2rem;letter-spacing:0.5px;font-weight:bold">Sorry!!</h2>                                   
+                  <p style="font-size:0.8rem">Desktop Notifications not supported in your device</p>
+            </div>`             
+            document.querySelector('.modalBox').innerHTML = text;
+            document.querySelector('.modalBox').style.display = "block";
+            document.querySelector('.modalBox .closeBox').addEventListener('click' , function(){closeBox('.modalBox')});
             } else {
               if(checkNotificationPromise()) {
                 Notification.requestPermission()
