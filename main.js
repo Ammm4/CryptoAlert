@@ -100,9 +100,24 @@
         document.querySelector('.notification-btn .totalNotifications').style.display="none";
   }
   
-  function showNotificationEnabler(){ 
-        let text = (dropDown.style.display === 'flex')? '':'flex';
-        dropDown.style.display = text;
+  function showNotificationEnabler(){
+        if('Notification' in window) {
+            let text = (dropDown.style.display === 'flex')? '':'flex';
+            dropDown.style.display = text;
+        } else {
+                  let text = `<span class="closeBox">&times;</span>
+                  <div class='formBox'>
+                        <div class='image-container'>
+                            <img src='images/sorry.png'>
+                        </div>
+                        <h2 style="margin-top:.2rem;letter-spacing:0.5px;font-weight:bold">Sorry!!</h2>                                   
+                        <p style="font-size:0.8rem">Desktop Notifications not supported in your device</p>
+                  </div>`             
+                  document.querySelector('.modalBox').innerHTML = text;
+                  document.querySelector('.modalBox').style.display = "block";
+                  document.querySelector('.modalBox .closeBox').addEventListener('click' , function(){closeBox('.modalBox')});
+        }
+        
   }
   
   function showMatchingCoinList() {
@@ -266,19 +281,19 @@
         })      
         let message = `    <span class="closeBox">&times;</span>
                            <div class='formBox'>
-                           <div class='image-container'>
+                               <div class='image-container'>
                                 <img src='images/welldone.png'>
-                           </div>
-                           <h2 style="margin-top:.2rem;letter-spacing:0.5px;font-weight:bold">Well Done!!</h2>
+                               </div>
+                               <h2 style="margin-top:.2rem;letter-spacing:0.5px;font-weight:bold">Well Done!!</h2>
                            
-                           <div class="message-coin" style="margin-top:1.5rem">
+                               <div class="message-coin" style="margin-top:1.5rem">
                                                   <img src=${assetImage} class="icon">
                                                   <div>${assetName} <span class="symbol">${assetSymbol}</span></div>
-                           </div>
+                               </div>
                           
-                           <p style="font-size:0.7rem">(added to your watchlist)</p>
-                           <p style="margin-top:1rem;font-size:0.7rem"><i class='far fa-bell'></i> Alert set @ ${upDown} £${targetPrice}</p>
-                       </div>`;
+                               <p style="font-size:0.7rem">(added to your watchlist)</p>
+                               <p style="margin-top:1rem;font-size:0.7rem"><i class='far fa-bell'></i> Alert set @ ${upDown} £${targetPrice}</p>
+                          </div>`;
         document.querySelector('.createAlert').removeEventListener('click', createAlert);
         document.querySelector('.modalBox').innerHTML = message; 
         document.querySelector('.modalBox .closeBox').addEventListener('click', function(){closeBox('.modalBox')})          
