@@ -853,13 +853,25 @@ button.remove-alert {
 
 @media only screen and (max-width: 768px) {
     
-  div.center-header {
+  .center-header {
     display: none; 
     flex-basis: 94%;
   }
   
   div.right-header .search {
     display: block;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .hide {
+    display: none
+  }
+  
+  .brand-toggle {
+    justify-content: space-around;
   }
 
 }

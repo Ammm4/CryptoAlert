@@ -36,62 +36,26 @@
   function addEvent() {     
         notiIcon.addEventListener('click', displayAlertModal);
         setiIcon.addEventListener('click', showNotificationEnabler);
-        searchBtn.addEventListener('click', showSearchAssetBar);
-        backButton.addEventListener('click', returnBack);
+        searchBtn.addEventListener('click', showHideSearchAssetBar);
+        backButton.addEventListener('click', showHideSearchAssetBar);
         searchInput.addEventListener('keyup', showMatchingCoinList);
         searchInput.addEventListener('focus', addStyleCenterHeader);
         searchInput.addEventListener('blur', removeStyleCenterHeader);
         document.querySelector('.priceAlertModal .closeBox').addEventListener('click', function(){closeBox('.priceAlertModal')});
         document.querySelector('.priceAlertModal .emptyBox').addEventListener('click', emptyAlertModalBox);
         document.querySelector('#dropdown .notificationEnabler').addEventListener('click', askNotificationPermission)
-        window.addEventListener('resize', hideandShowElements);      
+        //window.addEventListener('resize', hideandShowElements);      
   }
   
   //================ Adding Event handler End ==================//
-  function hideandShowElements(){
-        if(window.innerWidth <= 768) {         
-           if (searchBtn.value) {
-              centerHeader.style.display = "block";
-              backButton.style.display = "block";
-              leftHeader.style.display = "none";
-              rightHeader.style.display = "none";
-              searchBtn.style.display = "none";
-              document.querySelector('.brand').style.justifyContent = "space-around";
-           } else {
-              centerHeader.style.display = "none";
-              leftHeader.style.display = "block";
-              searchBtn.style.display = "block";
-              rightHeader.style.display = "flex";
-            }          
-        }
-        else {
-              backButton.style.display = "none";
-              leftHeader.style.display = "block";
-              centerHeader.style.display = "block";
-              rightHeader.style.display = "flex";
-              searchBtn.style.display = "none";
-              document.querySelector('.brand').style.justifyContent = "";
-        }
-  }
-  
-  function showSearchAssetBar() {
-        this.value = true;
-        centerHeader.style.display = "block";
-        leftHeader.style.display = "none";
-        rightHeader.style.display = "none";
-        backButton.style.display = "block";
-        searchBtn.style.display = "none"
-        document.querySelector('.brand').style.justifyContent = "space-around";
-  }
-  
-  function returnBack(){
-        this.style.display = "none";
-        leftHeader.style.display = "block";
-        rightHeader.style.display = "flex";      
-        searchBtn.style.display = "block";
-        searchBtn.value = false;  
-        centerHeader.style.display = "none";
-        document.querySelector('.brand').style.justifyContent = "";  
+ 
+  function showHideSearchAssetBar() {
+        this.classList.toggle('show');
+        this.classList.contains('search')? backButton.classList.toggle('show') : searchBtn.classList.toggle('show');              
+        leftHeader.classList.toggle('hide');
+        rightHeader.classList.toggle('hide');
+        centerHeader.classList.toggle('show');
+        document.querySelector('.brand').classList.toggle('brand-toggle');
   }
   
   function displayAlertModal(){
@@ -587,11 +551,12 @@
                       <img src='images/sorry.png'>
                   </div>
                   <h2 style="margin-top:.2rem;letter-spacing:0.5px;font-weight:bold">Sorry!!</h2>                                   
-                  <p style="font-size:0.8rem">Desktop Notifications not supported in your device</p>
-            </div>`             
+                  <p  style="font-size:0.8rem">Desktop Notifications not supported in your device</p>
+            </div>`;             
             document.querySelector('.modalBox').innerHTML = text;
             document.querySelector('.modalBox').style.display = "block";
             document.querySelector('.modalBox .closeBox').addEventListener('click' , function(){closeBox('.modalBox')});
+            return
             } else {
               if(checkNotificationPromise()) {
                 Notification.requestPermission()
